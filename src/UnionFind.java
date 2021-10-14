@@ -20,7 +20,7 @@ public class UnionFind {
             nr = nr.parent;
             c = c + 1;
         }
-        //System.out.println("find " + n.name + ": I looked at " + c + " nodes");
+        // System.out.println("find " + n.name + ": I looked at " + c + " nodes");
 
         root = nr;
 

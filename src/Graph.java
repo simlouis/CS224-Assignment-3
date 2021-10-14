@@ -67,25 +67,38 @@ public class Graph {
         }
     }
 
-    public int kruskal() {
+    public int kruskal(UnionFind cycles) {
         ArrayList<Edge> T = new ArrayList<>();
         ArrayList<Edge> L = edges;
+
         boolean done = false;
 
         while (!done) {
-            Edge smallest = edges.get(0);
-            for(int i = 1; i < edges.size(); i++){
-                if(edges.get(i).weight < smallest.weight) {
-                    smallest = edges.get(i);
+
+            // Get smallest edge
+            Edge smallest = L.get(0);
+            for(int i = 1; i < L.size(); i++){
+                if(L.get(i).weight < smallest.weight) {
+                    smallest = L.get(i);
                 }
             }
 
             // Check for cycle
-            if(){
+            Node x = cycles.Find(smallest.n1);
+            Node y  = cycles.Find(smallest.n2);
+
+            if(x != y){
+                System.out.println("add " + smallest);
                 T.add(smallest);
                 L.remove(smallest);
+                cycles.Union(smallest.n1, smallest.n2);
             }
             else{
+                L.remove(smallest);
+            }
+
+            // No nodes left to check loop is done
+            if(L.isEmpty()){
                 done = true;
             }
         }
