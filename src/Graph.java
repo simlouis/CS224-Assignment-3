@@ -67,9 +67,16 @@ public class Graph {
         }
     }
 
-    public int kruskal(UnionFind cycles) {
+    public int kruskal() {
+        UnionFind cycles = new UnionFind(this);
         ArrayList<Edge> T = new ArrayList<>();
-        ArrayList<Edge> L = edges;
+        int cost = 0;
+
+        // Initialize arraylist with edges
+        ArrayList<Edge> L = new ArrayList<>();
+        for (int i = 0; i < edges.size(); i++){
+            L.add(edges.get(i));
+        }
 
         boolean done = false;
 
@@ -88,6 +95,7 @@ public class Graph {
             Node y  = cycles.Find(smallest.n2);
 
             if(x != y){
+                cost += smallest.weight;
                 System.out.println("add " + smallest);
                 T.add(smallest);
                 L.remove(smallest);
@@ -102,6 +110,6 @@ public class Graph {
                 done = true;
             }
         }
-        return L.size();
+        return cost;
     }
 }

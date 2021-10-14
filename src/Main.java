@@ -48,7 +48,6 @@ public class Main {
         G.addEdge(n8, n10, 13);
         G.print();
 
-        UnionFind cycles = new UnionFind(G);
-        G.kruskal(cycles);
+        G.kruskal();
     }
 }
